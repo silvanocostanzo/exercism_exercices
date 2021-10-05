@@ -2,33 +2,51 @@ package logs
 
 import (
 	"fmt"
-	"strings"
 	"unicode/utf8"
 )
 
-// Message extracts the message from the provided log line.
-func Message(line string) string {
-	m := strings.Fields(line)
-	return strings.Join(m[1:], " ")
+func compareRune(r rune) string {
+	switch r {
+	case '❗':
+		return "recommendation"
+	case '🔍':
+		return "search"
+	case '☀':
+		return "weather"
+	default:
+		return "default"
+	}
 }
 
-// MessageLen counts the amount of characters (runes) in the message of the log line.
-func MessageLen(line string) int {
-	return utf8.RuneCountInString(Message(line))
+// Application identifies the application emitting the given log.
+func Application(log string) string {
+	for _, c := range log {
+		c := compareRune(c)
+		if c != "default" {
+			return c
+		}
+	}
+	return "default"
 }
 
-// LogLevel extracts the log level string from the provided log line.
-func LogLevel(line string) string {
-	m := strings.Fields(line)
-	r := strings.Replace(m[0], "[", "", 1)
-	r = strings.Replace(r, "]", "", 1)
-	r = strings.Replace(r, ":", "", 1)
-	return strings.ToLower(r)
+// Replace replaces all occurances of old with new, returning the modified log
+// to the caller.
+func Replace(log string, old, new rune) string {
+
+	var newStr string
+	for _, c := range log {
+		cc := compareRune(c)
+		if cc == "default" || old == '?' {
+			newStr += fmt.Sprintf("%c", c)
+		} else if rune(c) == '❗' {
+			newStr += fmt.Sprintf("%c", '?')
+		}
+	}
+	return newStr
 }
 
-// Reformat reformats the log line in the format `message (logLevel)`.
-func Reformat(line string) string {
-	m := Message(line)
-	ll := LogLevel(line)
-	return fmt.Sprintf("%s (%s)", m, ll)
+// WithinLimit determines whether or not the number of characters in log is
+// within the limit.
+func WithinLimit(log string, limit int) bool {
+	return utf8.RuneCountInString(log) <= limit
 }
