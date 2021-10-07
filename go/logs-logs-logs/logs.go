@@ -1,7 +1,7 @@
 package logs
 
 import (
-	"fmt"
+	"strings"
 	"unicode/utf8"
 )
 
@@ -33,16 +33,7 @@ func Application(log string) string {
 // to the caller.
 func Replace(log string, old, new rune) string {
 
-	var newStr string
-	for _, c := range log {
-		cc := compareRune(c)
-		if cc == "default" || old == '?' {
-			newStr += fmt.Sprintf("%c", c)
-		} else if rune(c) == '❗' {
-			newStr += fmt.Sprintf("%c", '?')
-		}
-	}
-	return newStr
+	return strings.ReplaceAll(log, string(old), string(new))
 }
 
 // WithinLimit determines whether or not the number of characters in log is
