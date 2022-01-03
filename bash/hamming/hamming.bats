@@ -13,28 +13,28 @@ load bats-extra
 }
 
 @test 'single letter identical strands' {
-#  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
   run bash hamming.sh 'A' 'A'
   assert_success
   assert_output "0"
 }
 
 @test 'single letter different strands' {
-#  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
   run bash hamming.sh 'G' 'T'
   assert_success
   assert_output "1"
 }
 
 @test 'long identical strands' {
-#  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
   run bash hamming.sh 'GGACTGAAATCTG' 'GGACTGAAATCTG'
   assert_success
   assert_output "0"
 }
 
 @test 'long different strands' {
-#  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
   run bash hamming.sh 'GGACGGATTCTG' 'AGGACGGATTCT'
   assert_success
   assert_output "9"
