@@ -8,7 +8,7 @@ import (
 
 // Schedule returns a time.Time from a string containing a date
 func Schedule(date string) time.Time {
-	layout := "1/02/2006 15:04:05"
+	layout := "1/2/2006 15:04:05"
 	t, err := time.Parse(layout, date)
 	if err != nil {
 		log.Fatal(err)
@@ -39,19 +39,11 @@ func IsAfternoonAppointment(date string) bool {
 
 // Description returns a formatted string of the appointment time
 func Description(date string) string {
-	layout := "1/2/2006 15:04:05"
-	t, err := time.Parse(layout, date)
-	if err != nil {
-		log.Fatal(err)
-	}
-	weekDay := t.Weekday().String()
-	month := t.Month().String()
-	day := t.Day()
-	year := t.Year()
-	hour := t.Hour()
-	minutes := t.Minute()
+	t := Schedule(date)
+	layout := "Monday, January 2, 2006, at 15:04"
+	apt := t.Format(layout)
 
-	return fmt.Sprintf("You have an appointment on %s, %s %d, %d, at %d:%d.", weekDay, month, day, year, hour, minutes)
+	return fmt.Sprintf("You have an appointment on %s.", apt)
 }
 
 // AnniversaryDate returns a Time with this year's anniversary
