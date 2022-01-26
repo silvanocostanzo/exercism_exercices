@@ -22,6 +22,7 @@
 #   main "$@"
 #
 # *** PLEASE REMOVE THESE COMMENTS BEFORE SUBMITTING YOUR SOLUTION ***
+<<<<<<< HEAD
 WORDS=${1//[-_*]/ }
 
 res=""
@@ -30,3 +31,5 @@ for w in ${WORDS}; do
 done
 
 echo ${res^^}
+=======
+>>>>>>> 43b0b60fbc63e6627e89469ea74a4b6662648111

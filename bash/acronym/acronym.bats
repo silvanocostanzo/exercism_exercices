@@ -11,56 +11,88 @@ load bats-extra
 }
 
 @test 'lowercase words' {
+<<<<<<< HEAD
   #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
+=======
+  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+>>>>>>> 43b0b60fbc63e6627e89469ea74a4b6662648111
   run bash acronym.sh 'Ruby on Rails'
   assert_success
   assert_output 'ROR'
 }
 
 @test 'punctuation' {
+<<<<<<< HEAD
   #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
+=======
+  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+>>>>>>> 43b0b60fbc63e6627e89469ea74a4b6662648111
   run bash acronym.sh 'First In, First Out'
   assert_success
   assert_output 'FIFO'
 }
 
 @test 'all caps word' {
+<<<<<<< HEAD
   #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
+=======
+  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+>>>>>>> 43b0b60fbc63e6627e89469ea74a4b6662648111
   run bash acronym.sh 'GNU Image Manipulation Program'
   assert_success
   assert_output 'GIMP'
 }
 
 @test 'punctuation without whitespace' {
+<<<<<<< HEAD
   #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
+=======
+  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+>>>>>>> 43b0b60fbc63e6627e89469ea74a4b6662648111
   run bash acronym.sh 'Complementary metal-oxide semiconductor'
   assert_success
   assert_output 'CMOS'
 }
 
 @test 'very long abbreviation' {
+<<<<<<< HEAD
   #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
+=======
+  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+>>>>>>> 43b0b60fbc63e6627e89469ea74a4b6662648111
   run bash acronym.sh 'Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me'
   assert_success
   assert_output 'ROTFLSHTMDCOALM'
 }
 
 @test "consecutive delimiters" {
+<<<<<<< HEAD
   #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
+=======
+  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+>>>>>>> 43b0b60fbc63e6627e89469ea74a4b6662648111
   run bash acronym.sh "Something - I made up from thin air"
   assert_success
   assert_output "SIMUFTA"
 }
 
 @test "apostrophes" {
+<<<<<<< HEAD
   #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
+=======
+  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+>>>>>>> 43b0b60fbc63e6627e89469ea74a4b6662648111
   run bash acronym.sh "Halley's Comet"
   assert_success
   assert_output "HC"
 }
 
 @test "underscore emphasis" {
+<<<<<<< HEAD
   #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
+=======
+  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+>>>>>>> 43b0b60fbc63e6627e89469ea74a4b6662648111
   run bash acronym.sh "The Road __Not__ Taken"
   assert_success
   assert_output "TRNT"
@@ -71,7 +103,11 @@ load bats-extra
 # https://www.gnu.org/software/bash/manual/bash.html#Shell-Expansions
 
 @test "contains shell globbing character" {
+<<<<<<< HEAD
   #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
+=======
+  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+>>>>>>> 43b0b60fbc63e6627e89469ea74a4b6662648111
   run bash acronym.sh "Two * Words"
   assert_success
   assert_output "TW"
