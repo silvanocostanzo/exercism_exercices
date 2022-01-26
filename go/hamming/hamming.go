@@ -6,11 +6,12 @@ import (
 )
 
 func Distance(a, b string) (int, error) {
-	v := strings.Compare(a, b)
 
 	if len(a) != len(b) {
 		return 0, errors.New("err")
 	}
+
+	v := strings.Compare(a, b)
 
 	if v == 0 {
 		return v, nil
