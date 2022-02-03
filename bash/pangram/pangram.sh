@@ -22,7 +22,10 @@
 #   main "$@"
 #
 # *** PLEASE REMOVE THESE COMMENTS BEFORE SUBMITTING YOUR SOLUTION ***
-alphabet=( {A..Z} )
-for c in ${@1}; do
-echo $c
+alphabet=( {a..z} )
+for (( i=0; i<${#1}; i++ )); do
+  char="${1:$i:1}"
+  n="${alphabet[@]/$char}"
 done
+
+echo ${n[@]}
